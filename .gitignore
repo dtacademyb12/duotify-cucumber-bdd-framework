@@ -1,0 +1,6 @@
+.idea/
+target/
+out/
+*.iml
+.DS_Store
+# .gitignore file has to be added to the project before you track it with Git
