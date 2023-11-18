@@ -1,11 +1,13 @@
 package pages;
 
 import com.github.javafaker.Faker;
+import lombok.Data;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.Driver;
 
+@Data
 public class SignUpPage {
 
 
@@ -39,6 +41,10 @@ public class SignUpPage {
     @FindBy(name = "registerButton")
     private WebElement signUplink;
 
+    @FindBy(xpath = "//span[.='This email is already in use']")
+    private WebElement emailErrorMessage;
+
+
 
 
     public void signUpWithValidData(){
@@ -49,6 +55,20 @@ public class SignUpPage {
         String email = faker.internet().emailAddress();
         this.email.sendKeys(email);
         email2.sendKeys(email);
+        String pass = faker.internet().password();
+        password.sendKeys(pass);
+        password2.sendKeys(pass);
+        signUplink.click();
+    }
+
+    public void signUpWithInvalidValidEmail(){
+        Faker faker = new Faker();
+        username.sendKeys(faker.name().username());
+        firstName.sendKeys(faker.name().firstName());
+        lastName.sendKeys(faker.name().lastName());
+
+        this.email.sendKeys("duotech@gmail.com");
+        email2.sendKeys("duotech@gmail.com");
         String pass = faker.internet().password();
         password.sendKeys(pass);
         password2.sendKeys(pass);
