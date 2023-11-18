@@ -1,0 +1,40 @@
+BDD - (Behavior Driven Development) - set of practices that facilitate the communication between technical and non-technical memebers
+      through feature files and scenarios written in plain english using Gherkin syntax
+
+Steps to create Cucumber BDD framework:
+
+1. Create a new Maven project and add the following cucumber dependencies and any other required ones:
+     <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.14.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>7.14.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>7.14.0</version>
+        </dependency>
+2. Create framework package structure: pages, runners, stepDefinitions, utils in src/test/java, features in src/test/resources
+3. Add necessary utility classes, .gitignore, .properties file
+4. Add a new feature file that represents a single feature, this usually corresponds to a user story
+5. Add scenarios in the feature file that correspond to a test case.
+6. Add a runner class that runs the scenarios. This class is typically an empty class annotrated with @RunWith(Cucumber.class)
+   The runner class needs to have the minimum configurations for the location of features files and step definition files with @CucumberOptions
+  @CucumberOptions (
+          features = "src/test/resources/features", // path where feature files are located
+          glue = "stepDefinitions" // path where step definitions are located
+  )
+7. Run the specific scenario. When you run the scenario the first time, Cucumber generates a step definition snippets for each unimplemented step.
+    To run the specific scenario, we need to add a tag on the sceanrio, and mention the tag in @CucumberOptions
+8. Add the generated step definition snippets into a specific Step definition class in stepdefinitions folder and implement the actual logic for each step.
+9. Re-Run the scenario and verify the correctness
+
+

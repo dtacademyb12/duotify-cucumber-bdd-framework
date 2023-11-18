@@ -17,6 +17,9 @@ public class LoginPage {
     @FindBy(id = "loginUsername")
     private WebElement username;
 
+    @FindBy(id = "hideLogin")
+    private WebElement signUpPageLink;
+
     @FindBy(id = "loginPassword")
     private WebElement password;
 
