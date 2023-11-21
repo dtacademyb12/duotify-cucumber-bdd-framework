@@ -2,39 +2,58 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class Driver {
 
 
+
+
     // For this design pattern to work properly, you will need to call Driver.getDriver() everytime you need a WebDriver
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
 
     private Driver(){}
 
 
-    public static WebDriver getDriver(){
+    public static synchronized WebDriver getDriver(){
 
-        if(driver == null){   // if it is not initialized, initialize it
+        if(drivers.get() == null){   // if it is not initialized, initialize it
 
-            //read the browser type from the config file
-            String browser = ConfigReader.getProperty("browser").toLowerCase();
+            String browser = System.getProperty("browser"); // read the browser value from command line
+
+
+            if(browser == null){ // if nothing was passed through cmd
+                browser = ConfigReader.getProperty("browser").toLowerCase(); //read the browser type from the config file
+            }
+
 
             switch (browser){
                 case "chrome":
-                    driver =  new ChromeDriver();
+                    drivers.set(new ChromeDriver());
+                    break;
+                case "chromeheadless":
+                    drivers.set(new ChromeDriver(new ChromeOptions().addArguments("--headless").addArguments("window-size=1920x1080")));
                     break;
                 case "edge":
-                    driver =  new EdgeDriver();
+                    drivers.set(new EdgeDriver());
+                    break;
+                case "edgeheadless":
+                    drivers.set(new EdgeDriver(new EdgeOptions().addArguments("--headless").addArguments("window-size=1920x1080")));
                     break;
                 case "firefox":
-                    driver =  new FirefoxDriver();
+                    drivers.set(new FirefoxDriver());
+                    break;
+                case "firefoxheadless":
+                    drivers.set(new FirefoxDriver(new FirefoxOptions().addArguments("--headless").addArguments("window-size=1920x1080")));
                     break;
                 case "safari":
-                    driver =  new SafariDriver();
+                    drivers.set(new SafariDriver());
                     break;
                 default:
                     throw new UnsupportedOperationException(browser + " is not supported. Use chrome, edge, firefox or safari.");
@@ -45,13 +64,13 @@ public class Driver {
 
         }
 
-        return driver;  // return the already initailized driver
+        return drivers.get();  // return the already initailized driver
     }
 
-    public static void quitDriver(){
-        if(driver != null){
-            driver.quit();
-            driver = null;
+    public static synchronized void quitDriver(){
+        if(drivers.get() != null){
+            drivers.get().quit();
+            drivers.remove();
         }
 
     }

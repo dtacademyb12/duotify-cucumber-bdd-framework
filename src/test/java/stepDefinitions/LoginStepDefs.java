@@ -51,6 +51,14 @@ public class LoginStepDefs {
 
     }
 
+    @When("the user enters a valid username as {string} and password as {string}")
+    public void the_user_enters_a_valid_username_as_and_password_as(String username, String pass) {
+
+        LoginPage  loginPage = new LoginPage();
+        loginPage.getUsername().sendKeys(username);
+        loginPage.getPassword().sendKeys(pass);
+    }
+
 
 
 
