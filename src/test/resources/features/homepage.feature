@@ -32,3 +32,16 @@ Feature: Music Streaming App Homepage
   Scenario: User clicks on the Search link in the sidebar
     When the user clicks on the "Search" link in the sidebar
     Then the user should be able to search for an artist, album or tracks
+
+  @ex
+  Scenario Outline: User clicks on the Search link in the sidebar
+    When the user clicks on the "<link>" link in the sidebar
+    Then the expected url should be  "<url>"
+
+
+    Examples:
+      | link            | url                                                          |
+      | Your Music      | http://duotify.us-east-2.elasticbeanstalk.com/yourMusic.php? |
+      | Browse          | http://duotify.us-east-2.elasticbeanstalk.com/browse.php?    |
+      | Duotech Academy | http://duotify.us-east-2.elasticbeanstalk.com/settings.php?  |
+      | Search          | http://duotify.us-east-2.elasticbeanstalk.com/search.php?    |

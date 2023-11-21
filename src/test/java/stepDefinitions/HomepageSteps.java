@@ -49,4 +49,10 @@ public void the_user_should_see_recommended_albums_displayed_on_the_main_page(In
     }
 
 
+    @Then("the expected url should be  {string}")
+    public void theExpectedUrlShouldBe(String url) {
+
+        Assert.assertEquals(url, Driver.getDriver().getCurrentUrl());
+
+    }
 }

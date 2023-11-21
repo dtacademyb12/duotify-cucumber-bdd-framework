@@ -31,11 +31,25 @@ Feature: User Login for Music Streaming App
     And the user clicks on the login button
     Then the user should be directed to their personal dashboard
 
-  @login
-  Scenario: Successful login with valid username and password
-    When the user enters a valid username as "duotech2020" and password as "duotech2020"
+#  @login
+#  Scenario: Successful login with valid username and password
+#    When the user enters a valid username as "duotech2020" and password as "duotech2020"
+#    And the user clicks on the login button
+#    Then the user should be directed to their personal dashboard
+
+  @sc_outline
+  Scenario Outline: Successful login with valid username and password
+    When the user enters a valid username as "<username>" and password as "<password>"
     And the user clicks on the login button
     Then the user should be directed to their personal dashboard
+
+    Examples:
+      | username       | password    |
+      | duotech2023    | duotech     |
+      | duotech2020    | duotech2020 |
+      | johnnycash2023 | johnnycash  |
+      | stevejobs2023  | stevejobs   |
+
 
 
 
