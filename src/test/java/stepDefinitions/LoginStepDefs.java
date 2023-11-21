@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import pages.LoginPage;
 import utils.ConfigReader;
 import utils.Driver;
+import utils.SeleniumUtils;
 
 import java.time.Duration;
 
@@ -32,6 +33,7 @@ public class LoginStepDefs {
     public void the_user_clicks_on_the_login_button() {
         LoginPage  loginPage = new LoginPage();
         loginPage.getSignInButton().click();
+        SeleniumUtils.waitFor(1);
     }
     @Then("the user should be directed to their personal dashboard")
     public void the_user_should_be_directed_to_their_personal_dashboard() {
