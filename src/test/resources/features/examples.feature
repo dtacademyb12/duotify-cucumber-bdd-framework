@@ -69,13 +69,35 @@ Feature: Example scenarios fro demo purposes
     When I do something
     Then something should happen
 
-  @datatable
+#  @datatable
   Scenario: Datatable example as list of lists
 
     Given I have the following data as list of lists
-#    the following does not correspond to a List
       | John Smith  | 09-08-1995 | 123-09-3456 | 123 Main St    |
       | Alice Smith | 11-08-1985 | 234-34-2326 | 234 Fairfax St |
       | Jane Doe    | 12-03-1954 | 123-45-1234 | 567 Lisbon St  |
+    When I do something
+    Then something should happen
+
+
+
+  Scenario: Datatable example as list of maps
+
+    Given I have the following data as list of maps
+      | Name        | DOB        | SSN         | Address        |
+      | John Smith  | 09-08-1995 | 123-09-3456 | 123 Main St    |
+      | Alice Smith | 11-08-1985 | 234-34-2326 | 234 Fairfax St |
+      | Jane Doe    | 12-03-1954 | 123-45-1234 | 567 Lisbon St  |
+    When I do something
+    Then something should happen
+
+  @datatable
+  Scenario: Datatable example as map
+
+    Given I have the following data as map dsdssd
+      | 123-08-5678 | John Smith   | 123 Main st    | 23 |
+      | 123-03-4232 | John Carty   | 322 Fairfax st | 67 |
+      | 234-23-3422 | James Carter | 422 Lisbon st  | 55 |
+      | 323-08-2323 | Jack Daniels | 212 Vista st   | 45 |
     When I do something
     Then something should happen

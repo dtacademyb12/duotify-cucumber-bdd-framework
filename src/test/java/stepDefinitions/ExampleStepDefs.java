@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.Data;
 
 import java.util.Collection;
 import java.util.List;
@@ -158,5 +159,38 @@ public class ExampleStepDefs {
 
         }
     }
+
+    @Given("I have the following data as list of maps")
+    public void i_have_the_following_data_as_list_of_maps(List<Map<String, String>> dataTable) {
+
+        System.out.println("List of maps: "  + dataTable);
+
+        System.out.println("Printing each inner map in a separate line");
+        for (Map<String, String> row : dataTable) {
+            System.out.println(row);
+        }
+
+        System.out.println(dataTable.get(1).get("Address"));
+    }
+
+
+    @Given("I have the following data as map dsdssd")
+    public void i_have_the_following_data_as_map_dsdssd(Map<String, List<Object>> dataTable) {
+
+        System.out.println(dataTable);
+
+        System.out.println("print each entry separately");
+
+        for (Map.Entry<String, List<Object>> eachKVPair : dataTable.entrySet()) {
+            System.out.println(eachKVPair);
+        }
+
+        List<Object> secondPerson = dataTable.get("123-03-4232");
+
+        String name = (String)secondPerson.get(0);
+        String age =  (String) secondPerson.get(2);
+
+    }
+
 
 }
