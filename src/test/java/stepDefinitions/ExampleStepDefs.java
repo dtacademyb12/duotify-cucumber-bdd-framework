@@ -5,6 +5,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 public class ExampleStepDefs {
 
 
@@ -92,4 +97,66 @@ public class ExampleStepDefs {
     @And("I want to buy {word}")
     public void iWantToBuyHats(String word) {
     }
+
+    @Given("I have the following data as map")
+    public void i_have_the_following_data_as_map(List<String> dataTable) {
+
+        System.out.println("Entire Map object");
+        System.out.println(dataTable);
+
+//        System.out.println("Single value for a key");
+//        System.out.println(dataTable.get("323-08-2323")); // gets the value associated with the key
+//
+//        System.out.println("All keys as set");
+//        // get all the keys
+//        Set<String> keys = dataTable.keySet();
+//        System.out.println(keys);
+//
+//        System.out.println("All values as collection");
+//        // get all the values
+//        Collection<String> values = dataTable.values();
+//        System.out.println(values);
+//
+//        System.out.println("Print each entry on separate line");
+//        Set<Map.Entry<String, String>> entries = dataTable.entrySet();
+//
+//        for (Map.Entry<String, String> entry : entries) {
+//            System.out.println(entry);
+//        }
+
+    }
+    @When("I do something")
+    public void i_do_something() {
+
+    }
+    @Then("something should happen")
+    public void something_should_happen() {
+
+    }
+
+
+    @Given("I have the following data as list")
+    public void i_have_the_following_data_as_list(List<String> dataTable) {
+        System.out.println(dataTable);
+    }
+
+
+    @Given("I have the following data as list of lists")
+    public void i_have_the_following_data_as_list_of_lists(List<List<String>> dataTable) {
+
+        System.out.println(dataTable);
+        System.out.println(dataTable.get(2));
+        System.out.println(dataTable.get(1).get(3));
+
+        System.out.println("Iterate through th list of list");
+
+        for (int i = 0; i < dataTable.size(); i++) {
+            for (int j = 0; j < dataTable.get(i).size(); j++) {
+                System.out.print(dataTable.get(i).get(j) + "\t");
+            }
+            System.out.println();
+
+        }
+    }
+
 }

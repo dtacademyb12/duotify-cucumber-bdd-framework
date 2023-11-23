@@ -126,6 +126,7 @@ UndefinedStepException - when a scenario step is unimplemented
 PendingException - default exception added to each snippet
 DuplicateStepDefinitionException - when there are more than one exactly matching step definitions for a single step
 AmbiguousStepDefinitionsException - when there are more than one matching step definitions due to cucumber expressions ambiguity
+CucumberException - when cucumber can not convert datatable to a corresponding java type indicated in step def argument
  Example:
  And I want to buy "socks" -> matches the following step defs:
                      @And("I want to buy {string}")

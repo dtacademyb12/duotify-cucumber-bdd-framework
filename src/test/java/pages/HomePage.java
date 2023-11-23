@@ -24,4 +24,10 @@ public class HomePage {
         String xpath = "//span[@role='link'][contains(text(), '" + linkText +"')]";
       Driver.getDriver().findElement(By.xpath(xpath)).click();
     }
+
+
+    public void clickOnAlbum(String name){
+        String xpath = "//div[@class='gridViewInfo'][.='"+name+"']";
+        Driver.getDriver().findElement(By.xpath(xpath)).click();
+    }
 }

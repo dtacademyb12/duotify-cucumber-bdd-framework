@@ -45,3 +45,21 @@ Feature: Music Streaming App Homepage
       | Browse          | http://duotify.us-east-2.elasticbeanstalk.com/browse.php?    |
       | Duotech Academy | http://duotify.us-east-2.elasticbeanstalk.com/settings.php?  |
       | Search          | http://duotify.us-east-2.elasticbeanstalk.com/search.php?    |
+
+
+
+
+    @albumNames
+    Scenario: Verify all album names
+#      Then the recommended album names should be "Cruel Summer" "Clouds" "Marisa"
+#      Datatable is a way to pass complex data structure(List, Map) into a single step
+      Then the recommended album names should be
+        | Cruel summer        |
+        | Clouds              |
+        | Marisa              |
+        | Oscillation         |
+        | Ultimatum           |
+        | Fenix               |
+        | Escape              |
+        | Werk                |
+        | I Am...Sasha Fierce |

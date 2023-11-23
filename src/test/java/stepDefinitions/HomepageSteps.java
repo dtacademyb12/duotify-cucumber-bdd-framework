@@ -6,6 +6,10 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.HomePage;
 import utils.Driver;
+import io.cucumber.datatable.*;
+
+import java.util.List;
+import java.util.Map;
 
 public class HomepageSteps {
 
@@ -60,5 +64,27 @@ public void the_user_should_see_recommended_albums_displayed_on_the_main_page(In
     @Then("I have another step 2")
     public void i_have_another_step() {
         System.out.println("cdsvcv");
+    }
+
+    @Then("the recommended album names should be {string} {string} {string}")
+    public void theRecommendedAlbumNamesShouldBe(String arg0, String arg1, String arg2) {
+
+
+    }
+
+
+    @Then("the recommended album names should be")
+    public void the_recommended_album_names_should_be(Map<String,String> expectedAlbums) {
+
+
+        // Write code here that turns the phrase above into concrete actions
+        // For automatic transformation, change DataTable to one of
+        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+        // Double, Byte, Short, Long, BigInteger or BigDecimal.
+
+        System.out.println("The converted list: " + expectedAlbums);
+
+
     }
 }
