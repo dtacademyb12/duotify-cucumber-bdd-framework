@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -39,4 +40,56 @@ public class ExampleStepDefs {
         System.out.println("Status:" + status);
     }
 
+    @And("I have a cucumber of type {string}")
+    public void iHaveACucumberOfType(String cukeType) {
+
+    }
+
+//    @And("I also have {int} tomatoes")
+//    public void iAlsoHaveTomatoes(int tomatoeCount) {
+//        System.out.println("Tomatoes: " + tomatoeCount);
+//    }
+
+    @Given("I also have {long} tomatoes")
+    public void i_also_have_tomatoes(Long tomatoeCount) {
+        System.out.println("Tomatoes: " + tomatoeCount);
+    }
+
+    @And("I ate some {word}")
+    public void iAteSomeBananas(String fruit) {
+        System.out.println(fruit);
+
+
+    }
+
+    public static void main(String[] args) {
+        String str = """
+                      cdshcdhds
+                      dsavvdsa
+                      bsabv sda
+                      dasbvdsav
+                     """;
+
+        System.out.println(str);
+    }
+
+
+    @When("I send the following query to db")
+    public void i_send_the_following_query_to_db(String docString) {
+        System.out.println(docString);
+    }
+
+
+//    @Then("I have another step")
+//    public void i_have_another_step() {
+//        System.out.println("cdsvcv");
+//    }
+
+    @And("I want to buy {string}")
+    public void iWantToBuy(String product) {
+    }
+
+    @And("I want to buy {word}")
+    public void iWantToBuyHats(String word) {
+    }
 }

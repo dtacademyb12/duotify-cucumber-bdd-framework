@@ -55,4 +55,10 @@ public void the_user_should_see_recommended_albums_displayed_on_the_main_page(In
         Assert.assertEquals(url, Driver.getDriver().getCurrentUrl());
 
     }
+
+
+    @Then("I have another step 2")
+    public void i_have_another_step() {
+        System.out.println("cdsvcv");
+    }
 }
