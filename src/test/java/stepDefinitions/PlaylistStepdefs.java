@@ -32,9 +32,9 @@ public class PlaylistStepdefs {
         //Soft Assertions
 
         SoftAssertions softAssertions = new SoftAssertions();
-        softAssertions.assertThat(playlistDetailsPage.getName().getText()).isEqualTo(firstRow.get("Name")+"cds");
+        softAssertions.assertThat(playlistDetailsPage.getName().getText()).isEqualTo(firstRow.get("Name"));
         softAssertions.assertThat(playlistDetailsPage.getUsername().getText().split(" ")[1]).isEqualTo(firstRow.get("Username"));
-        softAssertions.assertThat(playlistDetailsPage.getCountSongs().getText().split(" ")[0]).isEqualTo(firstRow.get("Count")+"2");
+        softAssertions.assertThat(playlistDetailsPage.getCountSongs().getText().split(" ")[0]).isEqualTo(firstRow.get("Count"));
 
         softAssertions.assertAll();
 
