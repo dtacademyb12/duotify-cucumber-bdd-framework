@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.it.Ma;
 import lombok.Data;
 
 import java.util.Collection;
@@ -100,30 +101,30 @@ public class ExampleStepDefs {
     }
 
     @Given("I have the following data as map")
-    public void i_have_the_following_data_as_map(List<String> dataTable) {
+    public void i_have_the_following_data_as_map(Map<String,String> dataTable) {
 
         System.out.println("Entire Map object");
         System.out.println(dataTable);
 
-//        System.out.println("Single value for a key");
-//        System.out.println(dataTable.get("323-08-2323")); // gets the value associated with the key
-//
-//        System.out.println("All keys as set");
-//        // get all the keys
-//        Set<String> keys = dataTable.keySet();
-//        System.out.println(keys);
-//
-//        System.out.println("All values as collection");
-//        // get all the values
-//        Collection<String> values = dataTable.values();
-//        System.out.println(values);
-//
-//        System.out.println("Print each entry on separate line");
-//        Set<Map.Entry<String, String>> entries = dataTable.entrySet();
-//
-//        for (Map.Entry<String, String> entry : entries) {
-//            System.out.println(entry);
-//        }
+        System.out.println("Single value for a key");
+        System.out.println(dataTable.get("323-08-2323")); // gets the value associated with the key
+
+        System.out.println("All keys as set");
+        // get all the keys
+        Set<String> keys = dataTable.keySet();
+        System.out.println(keys);
+
+        System.out.println("All values as collection");
+        // get all the values
+        Collection<String> values = dataTable.values();
+        System.out.println(values);
+
+        System.out.println("Print each entry on separate line");
+        Set<Map.Entry<String, String>> entries = dataTable.entrySet();
+
+        for (Map.Entry<String, String> entry : entries) {
+            System.out.println(entry);
+        }
 
     }
     @When("I do something")
@@ -190,6 +191,32 @@ public class ExampleStepDefs {
         String name = (String)secondPerson.get(0);
         String age =  (String) secondPerson.get(2);
 
+    }
+
+    @Given("I have the following data as about a person")
+    public void i_have_the_following_data_as_about_a_person(List<List<String>> dataTable) {
+        // Write code here that turns the phrase above into concrete actions
+        // For automatic transformation, change DataTable to one of
+        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+        // Double, Byte, Short, Long, BigInteger or BigDecimal.
+        //
+        System.out.println(dataTable);
+        System.out.println(dataTable.get(0).get(1));
+    }
+
+    @Given("I have the following data for a single user")
+    public void i_have_the_following_data_for_a_single_user(List<Map<String, String>> dataTable) {
+        // Write code here that turns the phrase above into concrete actions
+        // For automatic transformation, change DataTable to one of
+        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+        // Double, Byte, Short, Long, BigInteger or BigDecimal.
+        //
+        // For other transformations you can register a DataTableType.
+        System.out.println(dataTable);
+
+        System.out.println(dataTable.get(0).get("SSN"));
     }
 
 

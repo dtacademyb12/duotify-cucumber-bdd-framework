@@ -74,7 +74,7 @@ public void the_user_should_see_recommended_albums_displayed_on_the_main_page(In
 
 
     @Then("the recommended album names should be")
-    public void the_recommended_album_names_should_be(Map<String,String> expectedAlbums) {
+    public void the_recommended_album_names_should_be(List<String> expectedAlbums) {
 
 
         // Write code here that turns the phrase above into concrete actions

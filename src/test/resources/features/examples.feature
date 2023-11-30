@@ -53,10 +53,10 @@ Feature: Example scenarios fro demo purposes
   Scenario: Datatable example as map
 
     Given I have the following data as map
-        | 123-08-5678 | John Smith |
-        | 123-03-4232 | John Carty |
-        | 234-23-3422 | James Carter |
-        | 323-08-2323 | Jack Daniels |
+      | 123-08-5678 | John Smith   |
+      | 123-03-4232 | John Carty   |
+      | 234-23-3422 | James Carter |
+      | 323-08-2323 | Jack Daniels |
     When I do something
     Then something should happen
 
@@ -69,13 +69,21 @@ Feature: Example scenarios fro demo purposes
     When I do something
     Then something should happen
 
-#  @datatable
+  @listOfLists
   Scenario: Datatable example as list of lists
 
     Given I have the following data as list of lists
       | John Smith  | 09-08-1995 | 123-09-3456 | 123 Main St    |
       | Alice Smith | 11-08-1985 | 234-34-2326 | 234 Fairfax St |
       | Jane Doe    | 12-03-1954 | 123-45-1234 | 567 Lisbon St  |
+    When I do something
+    Then something should happen
+
+  @listOfLists
+  Scenario: Datatable example as list of lists
+
+    Given I have the following data as about a person
+      | John Smith  | 09-08-1995 | 123-09-3456 | 123 Main St    |
     When I do something
     Then something should happen
 
@@ -88,6 +96,15 @@ Feature: Example scenarios fro demo purposes
       | John Smith  | 09-08-1995 | 123-09-3456 | 123 Main St    |
       | Alice Smith | 11-08-1985 | 234-34-2326 | 234 Fairfax St |
       | Jane Doe    | 12-03-1954 | 123-45-1234 | 567 Lisbon St  |
+    When I do something
+    Then something should happen
+
+    @listOfMaps
+  Scenario: Datatable example as list of maps
+
+    Given I have the following data for a single user
+      | Name        | DOB        | SSN         | Address        |
+      | John Smith  | 09-08-1995 | 123-09-3456 | 123 Main St    |
     When I do something
     Then something should happen
 

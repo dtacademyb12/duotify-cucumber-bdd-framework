@@ -132,3 +132,35 @@ CucumberException - when cucumber can not convert datatable to a corresponding j
                      @And("I want to buy {string}")
                      @And("I want to buy {word}")
 
+
+Cucumber Data Table - a cucumber feature that enables table-style data to be passed from a SINGLE step of a Cucumber scenario
+                                into the step definition method
+
+             Example:           Given I am on homepage
+                                When I pass this information
+                                | John | Doe | 12/09/1999 | 235-345-1234 | 322-09-6322 | 123 Main St, Vienna VA 22056 |
+
+              The DataTable is added to the cucumber step definition method as a parameter, we simply need to replace it with corresponding
+              Java data structure for automatic transformation. The allowed types are List<E>, List<List<E>>, List<Map<K,V>>,
+               Map<K,V>  Map<K, List<V>> where E,K,V must be a String, Integer, Float, Double, Byte, Short, Long
+
+           When Cucumber converts the DataTable into corresponding Java data structures (List, Map), it creates
+           unmodifiable versions of these data structures.
+           If you need to modify, you need to convert into a modifiable type.
+
+
+What is the difference between Cucumber Data Table and Scenario Outline's Examples table?
+
+Data Table belongs to a single step of a scenario whereas Examples table belongs to the entire Scenario Outline.
+We use Data Table when we want to pass table-style data (multiple sets of data) into a single step.
+We use Examples table with Cucumber Scenario Outline when we want to run the same scenario multiple times with different input.
+
+
+Cucumber comes with built-in Junit 4 by default and it does not have soft assertions.
+Hence we can use AssertJ library to implement soft assertions:
+           Ex:
+                SoftAssertions softAssertions = new SoftAssertions();
+                softAssertions.assertThat("actual").isEqualTo("expected");
+                softAssertions.assertThat("actual2").isEqualTo("expected2");
+                softAssertions.assertThat("actual3").isEqualTo("expected3");
+                softAssertions.assertAll();
