@@ -1,7 +1,7 @@
 Feature: Testing CRUD Operations
 
   @db_crud
-  Scenario: Verify User Creation
+  Scenario: Verify User Creation - CREATE
 
     Given The user clicks on the sign up link
     When The user fills up the fields with valid info

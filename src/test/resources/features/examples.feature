@@ -118,3 +118,11 @@ Feature: Example scenarios fro demo purposes
       | 323-08-2323 | Jack Daniels | 212 Vista st   | 45 |
     When I do something
     Then something should happen
+
+
+    @shareData
+    Scenario: Sharing data between steps
+
+      Given The user has 50 cucumbers
+      When The user adds 50 more cucumbers
+      Then The user should have 100 cucumbers

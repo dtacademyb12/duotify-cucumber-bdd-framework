@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.it.Ma;
 import lombok.Data;
+import org.junit.Assert;
 
 import java.util.Collection;
 import java.util.List;
@@ -218,6 +219,29 @@ public class ExampleStepDefs {
 
         System.out.println(dataTable.get(0).get("SSN"));
     }
+
+    String str;
+    Integer one;
+    @Given("The user has {int} cucumbers")
+    public void the_user_has_cucumbers(Integer first) {
+        str = "Hello";
+        System.out.println(first);
+        one = first;
+    }
+    Integer second;
+    @When("The user adds {int} more cucumbers")
+    public void the_user_adds_more_cucumbers(Integer second) {
+        System.out.println(second);
+        this.second = second;
+    }
+    @Then("The user should have {int} cucumbers")
+    public void the_user_should_have_cucumbers(Integer third) {
+
+        System.out.println(str);
+        Integer actual = one + second;
+        Assert.assertEquals(third, actual);
+    }
+
 
 
 }
