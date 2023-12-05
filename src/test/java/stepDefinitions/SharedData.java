@@ -9,6 +9,11 @@ public class SharedData {
     private int first;
     private int second;
 
+    private String username;
+    private String password;
+
+
+
 
 
 }

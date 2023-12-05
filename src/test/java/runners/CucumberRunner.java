@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions (
 
-        tags = "@shareDataBetweenStepDefClasses", // all scenarios tagged with @temp
+        tags = "@db_delete", // all scenarios tagged with @temp
 //        tags = "@SMOKE and @REGRESSION", // scenarios that contain BOTH tags
 //        tags = "@SMOKE or @REGRESSION or @temp", // scenarios that contain any of the  tags
 //        tags = "(@SMOKE and @REGRESSION) or @temp", // scenarios that contain either first combo or second one
@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
                 "pretty", // adds more detailed info and logs on the console
                 "html:target/cucumber-report/report.html" // generates and stores a local html report file in a given path
         }
-//        ,stepNotifications = true // shows individual step results
+        ,stepNotifications = true // shows individual step results
 //        ,dryRun = true // to generate step definition snippets without actually running the code
 
 

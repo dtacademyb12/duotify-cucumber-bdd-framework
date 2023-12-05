@@ -19,6 +19,11 @@ public class HomePage {
     @FindBy(xpath = "//div[@class='gridViewInfo']")
     private List<WebElement> albums;
 
+    @FindBy(id = "nameFirstAndLast")
+    private WebElement name;
+
+
+
 
     public void clickOnALink(String linkText) {
         String xpath = "//span[@role='link'][contains(text(), '" + linkText +"')]";

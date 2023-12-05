@@ -15,7 +15,7 @@ public class Hooks {
 
 
 
-    @Before ()  // before each scenario
+    @Before ("not @db_only")
     public  void setupScenario(){
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("implicit.wait"))));
         Driver.getDriver().manage().window().maximize();

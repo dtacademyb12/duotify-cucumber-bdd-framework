@@ -6,8 +6,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.java.Log;
 import org.junit.Assert;
+import pages.HomePage;
+import pages.LogOutPage;
 import pages.LoginPage;
 import pages.SignUpPage;
+import stepDefinitions.SharedData;
 import utils.DBUtils;
 import utils.Driver;
 
@@ -15,6 +18,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class SignUpStepdefs {
+
+
+    SharedData sharedData;
+
+    public SignUpStepdefs(SharedData sharedData){
+        this.sharedData = sharedData;
+    }
 
     @Given("The user clicks on the sign up link")
     public void iClickOnTheSignUpLink() {
@@ -35,6 +45,7 @@ public class SignUpStepdefs {
 
         Faker faker = new Faker();
         this.username =faker.name().username();
+        sharedData.setUsername(username);
         signUpPage.getUsername().sendKeys(username);
         this.first = faker.name().firstName();
         signUpPage.getFirstName().sendKeys(this.first);
@@ -45,6 +56,7 @@ public class SignUpStepdefs {
         signUpPage.getEmail().sendKeys(this.email);
         signUpPage.getEmail2().sendKeys(this.email);
         String pass = faker.internet().password();
+        sharedData.setPassword(pass);
         signUpPage.getPassword().sendKeys(pass);
         signUpPage.getPassword2().sendKeys(pass);
         signUpPage.getSignUplink().click();
@@ -55,6 +67,8 @@ public class SignUpStepdefs {
     public void iShouldBeAbleToSignUpSuccessfully() {
 
         Assert.assertEquals("http://duotify.us-east-2.elasticbeanstalk.com/browse.php?", Driver.getDriver().getCurrentUrl());
+        new HomePage().getName().click();
+        new LogOutPage().clickOnLink("LOGOUT");
     }
 
 
