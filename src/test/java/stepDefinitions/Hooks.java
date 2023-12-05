@@ -4,6 +4,7 @@ import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utils.ConfigReader;
+import utils.DBUtils;
 import utils.Driver;
 
 import java.sql.DriverManager;
@@ -19,12 +20,18 @@ public class Hooks {
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("implicit.wait"))));
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().get(ConfigReader.getProperty("url"));
+
     }
 
-//    @Before ("@DB")  // before each scenario related to DB
-//    public  void setupScenarioDB()  {
-//        System.out.println("Create db connection");
-//    }
+    @Before ("@DB")  // before each scenario tagged with @DB
+    public  void setupScenarioDB()  {
+        DBUtils.createConnection();
+    }
+
+    @After ("@DB")  // after each scenario tagged with @DB
+    public  void tearDownScenarioDB()  {
+        DBUtils.close();
+    }
 
     //    @Before ("@DB or @API")  // before each scenario related to DB or API
 //    public  void setupScenarioDB()  {

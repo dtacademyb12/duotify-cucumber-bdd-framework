@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.it.Ma;
 import lombok.Data;
 import org.junit.Assert;
+import stepDefinitions.SharedData;
 
 import java.util.Collection;
 import java.util.List;
@@ -15,6 +16,10 @@ import java.util.Set;
 
 public class ExampleStepDefs {
 
+    SharedData sharedData;
+    public ExampleStepDefs(SharedData sharedData) {
+        this.sharedData = sharedData;
+    }
 
     @Given("I have {int} cucumbers in my belly")
     public void i_have_cucumbers_in_my_belly(Integer int1) {
@@ -240,6 +245,20 @@ public class ExampleStepDefs {
         System.out.println(str);
         Integer actual = one + second;
         Assert.assertEquals(third, actual);
+    }
+
+
+    @Given("The user has {int} tomatoes")
+    public void theUserHasTomatoes(int first) {
+        System.out.println(first);
+
+        sharedData.setFirst(first);
+    }
+
+    @When("The user adds {int} more tomatoes")
+    public void theUserAddsMoreTomatoes(int second) {
+
+        sharedData.setSecond(second);
     }
 
 

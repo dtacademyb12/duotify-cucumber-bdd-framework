@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions (
 
-        tags = "@shareData", // all scenarios tagged with @temp
+        tags = "@shareDataBetweenStepDefClasses", // all scenarios tagged with @temp
 //        tags = "@SMOKE and @REGRESSION", // scenarios that contain BOTH tags
 //        tags = "@SMOKE or @REGRESSION or @temp", // scenarios that contain any of the  tags
 //        tags = "(@SMOKE and @REGRESSION) or @temp", // scenarios that contain either first combo or second one

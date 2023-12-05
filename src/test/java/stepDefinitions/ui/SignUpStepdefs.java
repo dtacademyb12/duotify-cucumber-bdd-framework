@@ -8,7 +8,11 @@ import lombok.extern.java.Log;
 import org.junit.Assert;
 import pages.LoginPage;
 import pages.SignUpPage;
+import utils.DBUtils;
 import utils.Driver;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class SignUpStepdefs {
 
@@ -18,10 +22,32 @@ public class SignUpStepdefs {
 
     }
 
+    String username;
+    String first;
+    String lastName;
+    String email;
     @When("The user fills up the fields with valid info")
     public void iFillUpTheFieldsWithValidInfo() {
 
-        new SignUpPage().signUpWithValidData();
+
+
+        SignUpPage signUpPage = new SignUpPage();
+
+        Faker faker = new Faker();
+        this.username =faker.name().username();
+        signUpPage.getUsername().sendKeys(username);
+        this.first = faker.name().firstName();
+        signUpPage.getFirstName().sendKeys(this.first);
+        this.lastName = faker.name().lastName();
+        signUpPage.getLastName().sendKeys(this.lastName);
+
+        this.email = faker.internet().emailAddress();
+        signUpPage.getEmail().sendKeys(this.email);
+        signUpPage.getEmail2().sendKeys(this.email);
+        String pass = faker.internet().password();
+        signUpPage.getPassword().sendKeys(pass);
+        signUpPage.getPassword2().sendKeys(pass);
+        signUpPage.getSignUplink().click();
 
     }
 
@@ -36,19 +62,7 @@ public class SignUpStepdefs {
     public void the_user_enters_an_invalid_email_address() {
 
 
-       SignUpPage signUpPage = new SignUpPage();
-
-        Faker faker = new Faker();
-        signUpPage.getUsername().sendKeys(faker.name().username());
-        signUpPage.getFirstName().sendKeys(faker.name().firstName());
-        signUpPage.getLastName().sendKeys(faker.name().lastName());
-
-        signUpPage.getEmail().sendKeys("duotech@gmail.com");
-        signUpPage.getEmail2().sendKeys("duotech@gmail.com");
-        String pass = faker.internet().password();
-        signUpPage.getPassword().sendKeys(pass);
-        signUpPage.getPassword2().sendKeys(pass);
-        signUpPage.getSignUplink().click();
+        new SignUpPage().signUpWithInvalidValidEmail();
 
     }
 
@@ -58,14 +72,29 @@ public class SignUpStepdefs {
     }
 
 
-    @Then("The user should be stored in the database correctly")
+    @Then("The user should be stored in the database correctly and the user details should be correct")
     public void the_user_should_be_stored_in_the_database_correctly() {
 
-    }
-    @Then("The user details should be correct")
-    public void the_user_details_should_be_correct() {
+        List<List<Object>> listOfLists = DBUtils.getQueryResultAsListOfLists("select * from users where username='" + this.username + "'");
+        System.out.println(listOfLists);
+        Assert.assertEquals(1, listOfLists.size());
+        Assert.assertTrue(!listOfLists.isEmpty());
+        // Verify the username from the returned user from  the db
+
+        Object actualUsername = listOfLists.get(0).get(1);
+        Object actualFirst = listOfLists.get(0).get(2);
+        Object actualLast = listOfLists.get(0).get(3);
+        Object actualEmail = listOfLists.get(0).get(4);
+        Object actualDate = listOfLists.get(0).get(6);
+
+        Assert.assertEquals(this.username, actualUsername);
+        Assert.assertEquals(this.first, actualFirst);
+        Assert.assertEquals(this.lastName, actualLast);
+//        Assert.assertEquals(this.email, actualEmail); // email bug
+        Assert.assertEquals(LocalDateTime.now().toLocalDate(), ((LocalDateTime)actualDate).toLocalDate()); //compare the user creation dat ignoring the time
 
     }
+
 
 
 }

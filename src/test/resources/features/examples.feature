@@ -120,9 +120,17 @@ Feature: Example scenarios fro demo purposes
     Then something should happen
 
 
-    @shareData
-    Scenario: Sharing data between steps
+    @shareDataBetweenStepDefClasses
+    Scenario: Sharing data between steps in multiple classes
 
-      Given The user has 50 cucumbers
-      When The user adds 50 more cucumbers
-      Then The user should have 100 cucumbers
+      Given The user has 50 tomatoes
+      When The user adds 25 more tomatoes
+      Then The user should have 75 tomatoes
+
+
+  @shareDataWithinSameStepDefClass
+  Scenario: Sharing data between steps
+
+    Given The user has 50 cucumbers
+    When The user adds 50 more cucumbers
+    Then The user should have 100 cucumbers
