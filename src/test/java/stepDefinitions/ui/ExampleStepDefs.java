@@ -16,6 +16,7 @@ import java.util.Set;
 
 public class ExampleStepDefs {
 
+
     SharedData sharedData;
     public ExampleStepDefs(SharedData sharedData) {
         this.sharedData = sharedData;
@@ -261,6 +262,28 @@ public class ExampleStepDefs {
         sharedData.setSecond(second);
     }
 
+    String name;
+    @Given("This step declares some data")
+    public void thisStepDeclaresSomeData() {
+        name = "Hello";
+        System.out.println("First step");
+    }
+
+
+
+    @When("This step will access the first steps data")
+    public void thisStepWillAccessTheFirstSteps() {
+        System.out.println("Second step accessing the first step's name variable");
+        System.out.println(name);
+    }
+
+
+    @Given("This step declares some data DI version")
+    public void thisStepDeclaresSomeDataDIVersion() {
+         sharedData.setFullName("John Doe"); //initializing the shared variable
+
+
+    }
 
 
 }

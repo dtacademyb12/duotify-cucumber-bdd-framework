@@ -27,4 +27,11 @@ public class ExampleStepDefs2 {
     }
 
 
+    @When("This step will access the first steps data DI version")
+    public void thisStepWillAccessTheFirstStepsDataDIVersion() {
+
+        System.out.println(sharedData.getFullName()); // accessing the shared variable
+    }
+
+
 }

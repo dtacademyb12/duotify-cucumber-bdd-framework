@@ -62,5 +62,7 @@ public class LoginStepDefs {
     }
 
 
-
+    @When("The user logs in with the same credentials")
+    public void theUserLogsInWithTheSameCredentials() {
+    }
 }

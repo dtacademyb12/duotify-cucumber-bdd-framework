@@ -1,5 +1,6 @@
 package stepDefinitions.db;
 
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -79,5 +80,16 @@ public class CrudOpeartionsStepDefs{
         loginPage.getPassword().sendKeys(sharedData.getPassword());
         loginPage.getSignInButton().click();
         Assert.assertNotEquals("http://duotify.us-east-2.elasticbeanstalk.com/browse.php?", Driver.getDriver().getCurrentUrl());
+    }
+
+    @Given("The a new user with random credentials is created in the DB")
+    public void theANewUserWithRandomCredentialsIsCreatedInTheDB() throws SQLException {
+
+
+        Faker faker  = new Faker();
+        String query = "INSERT INTO users (username, firstName, lastName, email, password) values" +
+                " (\""+faker.name().username()+"\", \""+faker.name().firstName()+"\", \""+faker.name().lastName()+"\", \""+faker.internet().emailAddress()+"\", \"3bcc3a4e1f82f85b2dfe9ef600e65db0\")";
+        System.out.println(query);
+        DBUtils.executeUpdate(query);
     }
 }

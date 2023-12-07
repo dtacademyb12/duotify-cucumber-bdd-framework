@@ -134,3 +134,17 @@ Feature: Example scenarios fro demo purposes
     Given The user has 50 cucumbers
     When The user adds 50 more cucumbers
     Then The user should have 100 cucumbers
+
+
+  @shareDataBetweenSteps
+  Scenario: Sharing data between steps in the same class
+
+    Given This step declares some data
+    When This step will access the first steps data
+
+
+  @shareDataBetweenSteps
+  Scenario: Sharing data between steps in the same class using DI
+
+    Given This step declares some data DI version
+    When This step will access the first steps data DI version
