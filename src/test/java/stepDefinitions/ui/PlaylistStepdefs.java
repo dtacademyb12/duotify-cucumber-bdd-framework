@@ -1,16 +1,25 @@
 package stepDefinitions.ui;
 
+import com.github.javafaker.Faker;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import pages.PlaylistDetailsPage;
 import pages.PlaylistsPage;
+import stepDefinitions.SharedData;
 
 import java.util.List;
 import java.util.Map;
 
 public class PlaylistStepdefs {
+
+    SharedData sharedData;
+
+    public PlaylistStepdefs(SharedData sharedData) {
+        this.sharedData = sharedData;
+    }
 
     @When("the user clicks on {string} playlist")
     public void the_user_clicks_on_playlist(String name) {
@@ -41,5 +50,13 @@ public class PlaylistStepdefs {
 
 
 
+    }
+
+    @And("the user creates a new playlist with random name")
+    public void theUserCreatesANewPlaylistWithRandomName() {
+
+        String name =  new Faker().funnyName().name();
+        sharedData.setPlaylistName(name);
+        new PlaylistsPage().createPlaylist(name);
     }
 }

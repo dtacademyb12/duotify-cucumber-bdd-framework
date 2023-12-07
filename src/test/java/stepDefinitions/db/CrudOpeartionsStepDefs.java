@@ -1,9 +1,11 @@
 package stepDefinitions.db;
 
 import com.github.javafaker.Faker;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Assert;
 import pages.LoginPage;
 import stepDefinitions.SharedData;
@@ -87,9 +89,23 @@ public class CrudOpeartionsStepDefs{
 
 
         Faker faker  = new Faker();
+        String password = faker.internet().password();
+        String username = faker.name().username();
+        sharedData.setUsername(username);
+        sharedData.setPassword(password);
+
         String query = "INSERT INTO users (username, firstName, lastName, email, password) values" +
-                " (\""+faker.name().username()+"\", \""+faker.name().firstName()+"\", \""+faker.name().lastName()+"\", \""+faker.internet().emailAddress()+"\", \"3bcc3a4e1f82f85b2dfe9ef600e65db0\")";
+                " (\""+username+"\", \""+faker.name().firstName()+"\", \""+faker.name().lastName()+"\", \""+faker.internet().emailAddress()+"\", \""+ DigestUtils.md5Hex(password)+"\")";
         System.out.println(query);
         DBUtils.executeUpdate(query);
     }
+
+    @And("the user is cleaned up from the database")
+    public void theUserIsCleanedUpFromTheDatabase() throws SQLException {
+
+        String query = "DELETE from users where username='"+sharedData.getUsername()+"'";
+        DBUtils.executeUpdate(query);
+    }
+
+
 }

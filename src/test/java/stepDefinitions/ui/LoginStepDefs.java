@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import pages.LoginPage;
+import stepDefinitions.SharedData;
 import utils.ConfigReader;
 import utils.Driver;
 import utils.SeleniumUtils;
@@ -17,6 +18,13 @@ import utils.SeleniumUtils;
 import java.time.Duration;
 
 public class LoginStepDefs {
+
+
+    SharedData sharedData;
+
+    public LoginStepDefs (SharedData sharedData){
+        this.sharedData = sharedData;
+    }
 
     @Given("the user is on the login page of the music streaming app")
     public void the_user_is_on_the_login_page_of_the_music_streaming_app() {
@@ -64,5 +72,13 @@ public class LoginStepDefs {
 
     @When("The user logs in with the same credentials")
     public void theUserLogsInWithTheSameCredentials() {
+
+        LoginPage  loginPage = new LoginPage();
+        loginPage.getUsername().sendKeys(sharedData.getUsername());
+        loginPage.getPassword().sendKeys(sharedData.getPassword());
+        loginPage.getSignInButton().click();
+
+
+
     }
 }

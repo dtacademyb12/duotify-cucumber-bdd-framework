@@ -47,4 +47,5 @@ Feature: Testing CRUD Operations
     Given The a new user with random credentials is created in the DB
     When The user logs in with the same credentials
     Then the user should be directed to their personal dashboard
+    And the user is cleaned up from the database
 
