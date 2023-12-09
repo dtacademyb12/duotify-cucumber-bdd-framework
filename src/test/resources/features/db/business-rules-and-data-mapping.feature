@@ -2,7 +2,7 @@
 Feature: Data mapping and business rules scenarios
 
 
-  @data-mapping @smoke
+  @data-mapping
   Scenario: Verify data mapping of playlist for a specific user
 
     When the user enters a valid email and password
