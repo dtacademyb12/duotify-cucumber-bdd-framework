@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Assert;
+import pages.HomePage;
 import pages.LoginPage;
 import stepDefinitions.SharedData;
 import stepDefinitions.ui.SignUpStepdefs;
@@ -105,6 +106,17 @@ public class CrudOpeartionsStepDefs{
 
         String query = "DELETE from users where username='"+sharedData.getUsername()+"'";
         DBUtils.executeUpdate(query);
+    }
+
+
+    @Given("The album is updated in the database")
+    public void theAlbumIsUpdatedInTheDatabase() throws SQLException {
+
+        String albumName = "I am Sasha Fierce";
+        sharedData.setAlbumName(albumName);
+        DBUtils.executeUpdate("UPDATE albums SET title='"+albumName+"' where id=6");
+
+
     }
 
 

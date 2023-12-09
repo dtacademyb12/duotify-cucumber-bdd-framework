@@ -4,7 +4,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import pages.HomePage;
+import stepDefinitions.SharedData;
 import utils.Driver;
 import io.cucumber.datatable.*;
 
@@ -14,7 +16,13 @@ import java.util.Map;
 public class HomepageSteps {
 
 
-@Then("the user should see {int} recommended albums displayed on the main page")
+    SharedData sharedData;
+
+    public HomepageSteps(SharedData sharedData) {
+        this.sharedData = sharedData;
+    }
+
+    @Then("the user should see {int} recommended albums displayed on the main page")
 public void the_user_should_see_recommended_albums_displayed_on_the_main_page(Integer countOfAlbums) {
 
     Assert.assertEquals(countOfAlbums, Integer.valueOf(new HomePage().getAlbums().size()));
@@ -86,5 +94,13 @@ public void the_user_should_see_recommended_albums_displayed_on_the_main_page(In
         System.out.println("The converted list: " + expectedAlbums);
 
 
+    }
+
+
+    @Then("the updated album name should be correctly reflected on the homepage")
+    public void theUpdatedAlbumNameShouldBeCorrectlyReflectedOnTheHomepage() {
+        HomePage homePage = new HomePage();
+        WebElement album = homePage.getAlbum(sharedData.getAlbumName());
+        Assert.assertTrue(album.isDisplayed());
     }
 }

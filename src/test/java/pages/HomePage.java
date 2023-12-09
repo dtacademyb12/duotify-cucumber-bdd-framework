@@ -35,4 +35,10 @@ public class HomePage {
         String xpath = "//div[@class='gridViewInfo'][.='"+name+"']";
         Driver.getDriver().findElement(By.xpath(xpath)).click();
     }
+
+    public WebElement getAlbum(String name){
+        String xpath = "//div[@class='gridViewInfo'][.='"+name+"']";
+        WebElement element = Driver.getDriver().findElement(By.xpath(xpath));
+        return element;
+    }
 }

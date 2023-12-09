@@ -40,7 +40,6 @@ Feature: Testing CRUD Operations
     And the user should not be able to login with the same credentials on the UI
 
 
-
   @db_create
   Scenario: Verify User Creation DB to UI flow - CREATE
 
@@ -48,4 +47,14 @@ Feature: Testing CRUD Operations
     When The user logs in with the same credentials
     Then the user should be directed to their personal dashboard
     And the user is cleaned up from the database
+
+
+  @db_update_db_ui
+  Scenario: Verify Album Update DB to UI flow - UPDATE
+
+    Given The album is updated in the database
+    When the user enters a valid email and password
+    And the user clicks on the login button
+    Then the user should be directed to their personal dashboard
+    Then the updated album name should be correctly reflected on the homepage
 

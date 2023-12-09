@@ -15,6 +15,9 @@ public class SharedData {
     private String fullName;
 
     private String playlistName;
+    private String albumName;
+
+
 
 
 
