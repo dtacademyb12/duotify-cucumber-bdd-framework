@@ -30,4 +30,4 @@ jobs:
           chrome-version: 'stable'
 
       - name: Run Smoke Tests
-        run: mvn test -Dcucumber.filter.tags="@smoke"
+        run: mvn test -Dcucumber.filter.tags="@smoke" -Dbrowser=chromeheadless
