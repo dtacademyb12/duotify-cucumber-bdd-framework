@@ -49,7 +49,7 @@ Feature: Testing CRUD Operations
     And the user is cleaned up from the database
 
 
-  @db_update_db_ui
+  @db_update_db_ui @smoke
   Scenario: Verify Album Update DB to UI flow - UPDATE
 
     Given The album is updated in the database

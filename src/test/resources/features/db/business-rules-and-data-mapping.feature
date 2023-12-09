@@ -2,7 +2,7 @@
 Feature: Data mapping and business rules scenarios
 
 
-  @data-mapping
+  @data-mapping @smoke
   Scenario: Verify data mapping of playlist for a specific user
 
     When the user enters a valid email and password
@@ -12,7 +12,7 @@ Feature: Data mapping and business rules scenarios
     And the user creates a new playlist with random name
     Then the data should be mapped correctly in the corresponding table
 
-
+ @smoke
   Scenario: verify column names for songs table
     When I retrieve the column names from the "songs" table
     Then it should have the following

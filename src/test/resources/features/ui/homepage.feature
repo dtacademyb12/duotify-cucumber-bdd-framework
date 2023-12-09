@@ -9,7 +9,7 @@ Feature: Music Streaming App Homepage
     Then the user should be directed to their personal dashboard
 
 
-
+  @smoke
   Scenario: User opens the app and sees certain number of recommended albums on the homepage
     Then the user should see 9 recommended albums displayed on the main page
 
@@ -33,7 +33,7 @@ Feature: Music Streaming App Homepage
     When the user clicks on the "Search" link in the sidebar
     Then the user should be able to search for an artist, album or tracks
 
-  @ex
+  @ex @smoke
   Scenario Outline: User clicks on the Search link in the sidebar
     When the user clicks on the "<link>" link in the sidebar
     Then the expected url should be  "<url>"

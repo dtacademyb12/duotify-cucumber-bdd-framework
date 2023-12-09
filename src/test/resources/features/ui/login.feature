@@ -5,13 +5,13 @@ Feature: User Login for Music Streaming App
   I want to be able to securely log in to my account,
   So that I can access my personalized music playlists, preferences, and subscription details.
 
-  @redirect
+  @redirect @smoke
   Scenario: Successful login with email and password
     When the user enters a valid email and password
     And the user clicks on the login button
     Then the user should be directed to their personal dashboard
 
-  @smoke
+
   Scenario: Unsuccessful login with incorrect credentials
     When the user enters a valid email and password
     And the user clicks on the login button
@@ -25,7 +25,7 @@ Feature: User Login for Music Streaming App
     Then the user should be directed to their personal dashboard
 
 
-  @login
+  @login @smoke
   Scenario: Successful login with valid username and password
     When the user enters a valid username as "duotech2023" and password as "duotech"
     And the user clicks on the login button
