@@ -1,18 +1,19 @@
 name: Smoke tests
-run-name: Running smoke tests
+#run name shows up in GitHub actions for each run, by default it is the commit message
+#run-name: Running smoke tests
 on:
-  push:
-    branches:
-      - main
+#  push:
+#    branches:
+#      - main
 jobs:
   smoke-test:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'adopt'

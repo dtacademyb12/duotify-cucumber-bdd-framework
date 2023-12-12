@@ -342,3 +342,31 @@ Tell me about your Cucumber BDD framework?
                     Assert.assertEquals(sharedData.getUsername(), dbUsername); //sharedData.getUsername() is the shared data that is initialized in the other step
 
                  }
+
+
+
+
+
+
+          CI(Continuous integration)/CD(Continuous Delivery) - Set of practices where a code is continuously integrated and tested as the project progresses, and new code is added and the application deployment process is automated
+
+          CI/CD can be implemented through such tools as Jenkins, TravisCI, GitLab, GitHub Actions
+
+          Regardless of which tool you use, a typical CI/CD pipeline consists of "JOBS" that are collection of steps (which are command line commands typically written in some scripting language like YAML, Groovy) that aree executed
+          either when a specific event (push, pull request, merge) happens or on a specific schedule (e.g daily at midnight, every Saturday at 2 am)
+
+
+          GitHub Actions is a CI/CD tool that enables setting up complex CI/CD pipelines right within the GitHub repository
+          Advantages:
+            - it is already integrated into GitHub
+            - it is free for general public
+            - No need to set up complex virtual machines in the cloud, GitHub action provides built-in Linux,Windows and MacOS virtual machine s that require
+
+
+          To implement CI in our test automation framework:
+
+          1. Create a folder called .github/workflows in the project folder
+             where we can store our CI jobs called "Workflows"
+          2. Add a YAML workflow file with an extension .yml that contains the CI steps
+
+
