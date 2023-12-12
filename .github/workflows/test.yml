@@ -2,9 +2,9 @@ name: GitHub Actions Demo
 run-name: Testing GitHub Actions
 
 on:
-#  push:
-#    branches:
-#      - main
+  push:
+    branches:
+      - main
 
 jobs:
   demo-job:

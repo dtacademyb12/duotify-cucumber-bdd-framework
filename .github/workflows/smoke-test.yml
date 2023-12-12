@@ -2,9 +2,9 @@ name: Smoke tests
 #run name shows up in GitHub actions for each run, by default it is the commit message
 #run-name: Running smoke tests
 on:
-#  push:
-#    branches:
-#      - main
+  push:
+    branches:
+      - main
 jobs:
   smoke-test:
     runs-on: ubuntu-latest
