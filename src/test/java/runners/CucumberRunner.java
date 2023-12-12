@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
                 "pretty", // adds more detailed info and logs on the console
                 "html:target/cucumber-report/report.html" // generates and stores a local html report file in a given path
         }
-        ,stepNotifications = true // shows individual step results
+//        ,stepNotifications = true // shows individual step results
 //        ,dryRun = true // to generate step definition snippets without actually running the code
 
 
