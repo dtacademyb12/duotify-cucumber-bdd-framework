@@ -59,3 +59,10 @@ jobs:
 
       - name: Run DB Smoke Tests
         run: mvn test -Dcucumber.filter.tags="@DB" -Dbrowser=chromeheadless
+
+      - name: Attach Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Result Report File
+          path: target/cucumber-report/report.html

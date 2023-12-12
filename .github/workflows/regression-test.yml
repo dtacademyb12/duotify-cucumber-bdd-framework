@@ -2,12 +2,20 @@ name: Regression test Suite
 run-name: Running regression tests
 on:
   schedule:
-#    - cron: '0 0 * * *'  runs every midnight
-    - cron: '*/5 * * * *'  # every 5 mins
+#    - cron: '0 0 * * *'  runs every midnight, typical frequency for regression tests
+    - cron: '*/15 * * * *'  # every 15 mins, minimum amount of frequency is 15 mins in GitHub Actions
 #    - cron: '10,15 * * * *'  # every 10th and 30th minute
 #    - cron: '0 0 1,15 * *'  # every 1st and 15th day of the month ar midnight
 #    - cron: '0 0 * * 6,0'  # every Saturday and Sunday at midnight
 #    - cron: '0 0 * * 1-5'  # Monday to Friday at midnight
+
+ # any workflow can combine multiple types of triggers like push, PR or on schedule
+#  push:
+#    branches:
+#      - main
+#  pull_request:
+#    branches:
+#      - main
 jobs:
   regression-test:
     runs-on: ubuntu-latest
@@ -35,3 +43,10 @@ jobs:
 
       - name: Run Regression Tests
         run: mvn test -Dbrowser=chromeheadless
+
+      - name: Attach Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Result Report File
+          path: target/cucumber-report/report.html
