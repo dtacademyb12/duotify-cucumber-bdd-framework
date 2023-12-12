@@ -49,6 +49,15 @@ Feature: Testing CRUD Operations
     And the user is cleaned up from the database
 
 
+  @db_create @smoke
+  Scenario: Verify User Creation DB to UI flow - CREATE COPY
+
+    Given The a new user with random credentials is created in the DB
+    When The user logs in with the same credentials
+    Then the user should be directed to their personal dashboard
+    And the user is cleaned up from the database
+
+
   @db_update_db_ui @smoke
   Scenario: Verify Album Update DB to UI flow - UPDATE
 
