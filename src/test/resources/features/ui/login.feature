@@ -27,7 +27,7 @@ Feature: User Login for Music Streaming App
 
   @login @smoke
   Scenario: Successful login with valid username and password
-    When the user enters a valid username as "duotech2023" and password as "duotech"
+    When the user enters a valid username as "duotech2023" and password as "duotechbvascfgsagfcs"
     And the user clicks on the login button
     Then the user should be directed to their personal dashboard
 

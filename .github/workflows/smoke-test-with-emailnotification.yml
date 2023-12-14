@@ -1,4 +1,4 @@
-name: Smoke tests
+name: Smoke tests with email notificatiuon
 #run name shows up in GitHub actions for each run, by default it is the commit message
 #run-name: Running smoke tests
 on:
