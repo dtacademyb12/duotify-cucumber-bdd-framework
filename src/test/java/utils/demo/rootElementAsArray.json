@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Admin",
+    "location": "India",
+    "married": true,
+    "height": 178.56,
+    "other_names": ["Bob", "Bobby", "Robert"],
+    "school": {
+       "name": "University of Washington",
+       "address": "123 Main st"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Author",
+    "location": null
+  },
+  {
+    "id": 3,
+    "name": "Visitor",
+    "location": "USA"
+  }
+]

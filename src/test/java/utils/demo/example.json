@@ -1,0 +1,13 @@
+{
+  "id": 121,
+  "first_name": "Duotech",
+  "last_name": "Academy",
+  "email": "duotech2021@gmail.com",
+  "password": "duotech2021",
+  "employee": {
+    "id": 1,
+    "name": "Admin",
+    "location": "USA"
+  }
+
+}
