@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import io.cucumber.java.*;
+import io.restassured.RestAssured;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utils.ConfigReader;
@@ -15,13 +16,21 @@ public class Hooks {
 
 
 
-    @Before ("not @db_only")
+    @Before ("not (@db_only or @api_only)")
     public  void setupScenario(){
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("implicit.wait"))));
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().get(ConfigReader.getProperty("url"));
 
     }
+
+
+    @Before ("@API")
+    public  void setupScenarioAPI()  {
+        RestAssured.baseURI = ConfigReader.getProperty("api.base.uri");
+    }
+
+
 
     @Before ("@DB")  // before each scenario tagged with @DB
     public  void setupScenarioDB()  {
