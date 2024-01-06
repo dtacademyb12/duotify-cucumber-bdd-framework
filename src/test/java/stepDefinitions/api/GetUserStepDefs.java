@@ -4,8 +4,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import org.hamcrest.Matchers;
 import stepDefinitions.SharedData;
 import utils.ConfigReader;
+
+import static org.hamcrest.Matchers.equalTo;
 
 public class GetUserStepDefs {
 
@@ -30,7 +33,27 @@ public class GetUserStepDefs {
     }
     @When("I send a {string} request to the endpoint {string}")
     public void i_send_a_request_to_the_endpoint(String requestMethod, String endpoint) {
-        sharedData.setResponse(sharedData.getRequestSpecification().when().get(endpoint));
+
+        switch (requestMethod){
+            case "GET":
+                sharedData.setResponse(sharedData.getRequestSpecification().when().log().all().get(endpoint));
+                break;
+            case "POST":
+                sharedData.setResponse(sharedData.getRequestSpecification().when().log().all().post(endpoint));
+                break;
+            case "PUT":
+                sharedData.setResponse(sharedData.getRequestSpecification().when().log().all().put(endpoint));
+                break;
+            case "PATCH":
+                sharedData.setResponse(sharedData.getRequestSpecification().when().log().all().patch(endpoint));
+                break;
+            case "DELETE":
+                sharedData.setResponse(sharedData.getRequestSpecification().when().log().all().delete(endpoint));
+                break;
+            default:
+                throw new IllegalArgumentException("The request type " + requestMethod + " is not allowed." );
+        }
+
 
     }
     @Then("the response log should be displayed")
@@ -38,15 +61,20 @@ public class GetUserStepDefs {
         sharedData.getResponse().then().log().all();
     }
     @Then("the response status code should be {int}")
-    public void the_response_status_code_should_be(Integer int1) {
-
+    public void the_response_status_code_should_be(Integer code) {
+        sharedData.getResponse().then().statusCode(code);
     }
     @Then("the response {string} header should be {string}")
-    public void the_response_header_should_be(String string, String string2) {
-
+    public void the_response_header_should_be(String key, String value) {
+        sharedData.getResponse().then().header(key,value);
     }
     @Then("the response body should have {string} field with value {string}")
-    public void the_response_body_should_have_field_with_value(String string, String string2) {
+    public void the_response_body_should_have_field_with_value(String key, String value) {
+        sharedData.getResponse().then().body(key, equalTo(value));
+    }
 
+    @Given("the request has an invalid or missing API key")
+    public void theRequestIsMissingAPIKey() {
+        sharedData.getRequestSpecification().queryParam("api_key","invalidKey");
     }
 }

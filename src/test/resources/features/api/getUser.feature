@@ -1,7 +1,7 @@
 @API
 Feature: GET /user API endpoint features
 
-  @api_only
+
   Scenario: Retrieve a single user with a valid id
 
     Given the request is authenticated with a valid API key
@@ -19,6 +19,38 @@ Feature: GET /user API endpoint features
     And the response body should have "email" field with value "Dtacademy20@gmail.com"
     And the response body should have "createdAt" field with value "2022-09-28 00:00:00"
 
+
+
+  Scenario: Missing API Key
+
+    Given the request has an invalid or missing API key
+    Given the request "Accept" header is set to "application/json"
+
+    When I send a "GET" request to the endpoint "/user"
+    Then the response log should be displayed
+    Then the response status code should be 401
+    And the response body should have "message" field with value "Invalid or missing API Key. API key must be provided as an 'api_key' query parameter."
+
+
+  Scenario: Missing User ID
+
+    Given the request is authenticated with a valid API key
+    Given the request "Accept" header is set to "application/json"
+    When I send a "GET" request to the endpoint "/user"
+    Then the response log should be displayed
+    Then the response status code should be 400
+    And the response body should have "message" field with value "Bad request. User id is not provided."
+
+
+  Scenario: Invalid User ID
+
+    Given the request is authenticated with a valid API key
+    Given the request "Accept" header is set to "application/json"
+    And the request "id" query parameter is set to "999999"
+    When I send a "GET" request to the endpoint "/user"
+    Then the response log should be displayed
+    Then the response status code should be 404
+    And the response body should have "message" field with value "User not found."
 
 
 
