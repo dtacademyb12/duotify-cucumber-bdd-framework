@@ -19,6 +19,11 @@ import static io.restassured.RestAssured.given;
 
 public class Deserialization {
 
+
+
+
+
+    //branch 2 code
     @BeforeClass
     public static void initialize(){
         RestAssured.baseURI = "http://duotify.us-east-2.elasticbeanstalk.com/api";
