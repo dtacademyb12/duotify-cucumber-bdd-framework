@@ -23,6 +23,7 @@ public class SharedData {
 
     private RequestSpecification requestSpecification = given();  // initializes the RequestSpecification object
     private Response response;
+    private String jwtToken;
 
 
 
