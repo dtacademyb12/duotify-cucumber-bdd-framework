@@ -36,8 +36,8 @@ public class RestAssuredAuthenticationSchemes {
         RestAssured.baseURI = "http://duotify.us-east-2.elasticbeanstalk.com/api";
         given().
                 queryParam("id", 100).
-//                queryParam("api_key", "e82042a5f58f449c9d5a9e3cf5a3f43b").
-                header("x-api-key", "e82042a5f58f449c9d5a9e3cf5a3f43b").
+                queryParam("api_key", "e82042a5f58f449c9d5a9e3cf5a3f43b").
+//                header("x-api-key", "e82042a5f58f449c9d5a9e3cf5a3f43b").
                 when().log().all().
                 get("/user").
                 then().log().all().
